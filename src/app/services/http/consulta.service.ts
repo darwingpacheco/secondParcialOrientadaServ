@@ -1,13 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ProductosInterface } from '../../interfaces/productos-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultaService {
+  private readonly _http = inject(HttpClient);
   private authUrl = 'https://api.escuelajs.co/api/v1/auth';
+  private apiUrl = 'https://api.escuelajs.co/api/v1/products';
+  private apiUrlPost = 'https://api.escuelajs.co/api/v1/products/';
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
@@ -44,5 +48,22 @@ export class ConsultaService {
   logout(): void {
     localStorage.removeItem('token_auth'); // Elimina el token del almacenamiento local
     this.loggedIn.next(false); // Establece loggedIn como falso
+  }
+
+  getAll(): Observable<ProductosInterface[]> {
+    return this._http.get<ProductosInterface[]>(this.apiUrl);
+  }
+
+  create(product: ProductosInterface): Observable<ProductosInterface> {
+    console.log(product)
+    return this._http.post<ProductosInterface>(this.apiUrlPost, product);
+  }
+
+  update(product: ProductosInterface): Observable<ProductosInterface> {
+    return this._http.put<ProductosInterface>(`${this.apiUrl}/${product.id}`, product);
+  }
+
+  delete(id: number): Observable<void> {
+    return this._http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

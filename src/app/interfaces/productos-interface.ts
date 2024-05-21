@@ -1,7 +1,8 @@
 export interface ProductosInterface {
-    id: number;
+    id?: number;
     title: string;
-    descripcion: string;
+    description: string;
     price: number;
     images: string[];
+    categoryId: 4;
 }
