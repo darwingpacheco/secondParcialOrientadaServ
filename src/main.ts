@@ -10,7 +10,8 @@ import { ConsultaService } from './app/services/http/consulta.service';
 import { TokenInterceptor } from './app/interceptors/token.interceptor';
 
 import ProductoComponent from './app/pages/producto/producto.component';
-import { authGuard } from './app/services/http/auth.guard';
+import { AuthGuard } from './app/services/http/auth.guard';
+
 
 
 
@@ -19,7 +20,7 @@ bootstrapApplication(AppComponent, appConfig)
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'producto', component: ProductoComponent, canActivate: [authGuard] },
+  { path: 'producto', component: ProductoComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
