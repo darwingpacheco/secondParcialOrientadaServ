@@ -43,7 +43,13 @@ export default class ProductoComponent implements OnInit {
     });
   }
 
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login'])
+  }
+
   addProduct() {
+    console.log("se presiono add")
     this.selectedProduct = { title: '', description: '', price: 0, images: [''], categoryId: 4 };
   }
 
@@ -57,6 +63,12 @@ export default class ProductoComponent implements OnInit {
   deleteProduct(id: number) {
     this.productoS.delete(id).subscribe(() => {
       this.loadProducts();
+    });
+  }
+
+  updateProduct(updatedProduct: ProductosInterface) {
+    this.productoS.update(updatedProduct).subscribe(() => {
+      this.loadProducts(); // Recargar la lista de productos después de actualizar uno
     });
   }
 
@@ -79,15 +91,9 @@ export default class ProductoComponent implements OnInit {
     }
   }
 
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login'])
-  }
-
   cleanImageUrl(url: string): string {
     return url.replace(/^\[?"|"?\]$/g, '');
   }
-
 
   removeImage(index: number) {
     if (this.selectedProduct) {

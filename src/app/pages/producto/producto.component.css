@@ -1,99 +1,98 @@
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .product-form {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .product-form h2 {
-    margin-top: 0;
-  }
-  
-  .product-form div {
-    margin-bottom: 10px;
-  }
-  
-  .product-form label {
-    display: inline-block;
-    width: 100px;
-  }
-  
-  .product-form input,
-  .product-form textarea {
-    width: calc(100% - 110px);
-    padding: 5px;
-  }
-  
-  .product-form button {
-    margin-right: 10px;
-    padding: 10px 20px;
-  }
-  
-  .add-product {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    display: block;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .add-product:hover {
-    background-color: #218838;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  table th {
-    background-color: #f2f2f2;
-  }
-  
-  table td img {
-    border-radius: 5px;
-  }
-  
-  button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  button:first-of-type {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  button:last-of-type {
-    background-color: #dc3545;
-    color: white;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.product-form h2 {
+  margin-top: 0;
+}
+
+.product-form div {
+  margin-bottom: 10px;
+}
+
+.product-form label {
+  display: inline-block;
+  width: 100px;
+}
+
+.product-form input,
+.product-form textarea {
+  width: calc(100% - 110px);
+  padding: 5px;
+}
+
+.product-form button {
+  margin-right: 10px;
+  padding: 10px 20px;
+}
+
+.add-product {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  display: block;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-product:hover {
+  background-color: #218838;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table td img {
+  border-radius: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:first-of-type {
+  background-color: #007bff;
+  color: white;
+}
+
+button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
