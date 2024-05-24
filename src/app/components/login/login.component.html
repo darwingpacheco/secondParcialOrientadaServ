@@ -257,31 +257,32 @@
             <!-- brand-logo start -->
             <div class="brand-logo">
               <img
-                src="https://1.bp.blogspot.com/-3he0CGCSWHA/XyqopZcixRI/AAAAAAAAVM8/Mdfk_mPQa0Ydb7IAH0Iir8F4Ge7xxF0ygCLcBGAsYHQ/s0/logo.png"
-                width="150"
+                src="https://static.vecteezy.com/system/resources/previews/019/879/186/large_2x/user-icon-on-transparent-background-free-png.png"
+                width="180"
+                height="120"
                 alt="brand-logo"
               />
             </div>
             <!-- ./brand-logo -->
-            <p>Login using social media to get quick access</p>
+            <p class="txtRedes">Inicie sesión utilizando las redes sociales para obtener acceso rápido</p>
             <!-- social login buttons start -->
             <div class="row social-buttons">
               <div class="col-xs-4 col-sm-4 col-md-12">
-                <a href="#" class="btn btn-block btn-facebook">
+                <a class="btn btn-block btn-facebook">
                   <i class="fa fa-facebook"></i>
-                  <span class="hidden-xs hidden-sm">Signin with facebook</span>
+                  <span class="hidden-xs hidden-sm">FACEBOOK</span>
                 </a>
               </div>
               <div class="col-xs-4 col-sm-4 col-md-12">
-                <a href="#" class="btn btn-block btn-twitter">
+                <a class="btn btn-block btn-twitter">
                   <i class="fa fa-twitter"></i>
-                  <span class="hidden-xs hidden-sm">Signin with twitter</span>
+                  <span class="hidden-xs hidden-sm">TWITTER</span>
                 </a>
               </div>
               <div class="col-xs-4 col-sm-4 col-md-12">
-                <a href="#" class="btn btn-block btn-google">
+                <a class="btn btn-block btn-google">
                   <i class="fa fa-google-plus"></i>
-                  <span class="hidden-xs hidden-sm">Signin with google</span>
+                  <span class="hidden-xs hidden-sm">GOOGLE</span>
                 </a>
               </div>
             </div>
@@ -295,14 +296,8 @@
           <!-- panel-login start -->
           <div class="authfy-panel panel-login text-center active">
             <div class="authfy-heading">
-              <h3 class="auth-title">Login to your account</h3>
-              <p>
-                Don’t have an account?
-                <a class="lnk-toggler" data-panel=".panel-signup" href="#"
-                  >Sign Up Free!</a
-                >
-              </p>
-            </div>
+              <h3 class="auth-title">Logueate con tu cuenta</h3>
+            </div><br>
             <div class="form-group">
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="custom-form">
                 <div [ngClass]="'group-input'">
@@ -310,7 +305,7 @@
                     type="email"
                     class="form-control email"
                     formControlName="username"
-                    placeholder="Email address"
+                    placeholder="Email"
                   />
                 </div>
                 <div [ngClass]="'group-input'">
@@ -323,7 +318,7 @@
                     />
                     <span class="fa fa-eye-slash pwd-toggle"></span>
                   </div>
-                </div>
+                </div><br>
                 <button type="submit" class="btn btn-lg btn-primary">Enviar</button> <!-- Agregamos clases de Bootstrap -->
               </form>
             </div>

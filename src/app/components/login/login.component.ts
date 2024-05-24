@@ -36,50 +36,64 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      console.log('Form Submitted:', { username, password }); // Log form submission
-
-      this.authService.login(username, password).subscribe(
-        response => {
-          localStorage.setItem('token_auth',response.token);
-          localStorage.setItem('id_user',response.id);
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Login exitoso',
-            showConfirmButton: false,
-            timer: 2500,
-            toast: true,
-            customClass: {
-              container: 'my-swal-container',
-              title: 'my-swal-title',
-              icon: 'my-swal-icon',
-            },
-            background: '#E6F4EA',
-          });
-          this.router.navigate(["producto"])
+    if (this.loginForm.invalid) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'Verifique campos vacíos',
+        showConfirmButton: false,
+        timer: 2000,
+        toast: true,
+        customClass: {
+          container: 'my-swal-container',
+          title: 'my-swal-title',
+          icon: 'my-swal-icon',
+          popup: 'my-swal-popup',
         },
-        error => {
-          console.error('Login failed', error); // Log the error
-          Swal.fire({
-            position: 'top-end',
-            icon: 'warning',
-            title: 'Las credenciales de acceso son incorrectas',
-            showConfirmButton: false,
-            timer: 1500,
-            toast: true,
-            customClass: {
-              container: 'my-swal-container',
-              title: 'my-swal-title',
-              icon: 'my-swal-icon',
-              popup: 'my-swal-popup',
-            },
-          });
-        }
-      );
-    } else {
-      console.log('Form is invalid:', this.loginForm.errors); // Log form validation errors
+      });
+      return;
     }
+
+    const { username, password } = this.loginForm.value;
+    console.log('Form Submitted:', { username, password }); // Log form submission
+
+    this.authService.login(username, password).subscribe(
+      response => {
+        localStorage.setItem('token_auth', response.token);
+        localStorage.setItem('id_user', response.id);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login exitoso',
+          showConfirmButton: false,
+          timer: 2500,
+          toast: true,
+          customClass: {
+            container: 'my-swal-container',
+            title: 'my-swal-title',
+            icon: 'my-swal-icon',
+          },
+          background: '#E6F4EA',
+        });
+        this.router.navigate(["producto"]);
+      },
+      error => {
+        console.error('Login failed', error); // Log the error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'Las credenciales de acceso son incorrectas',
+          showConfirmButton: false,
+          timer: 1500,
+          toast: true,
+          customClass: {
+            container: 'my-swal-container',
+            title: 'my-swal-title',
+            icon: 'my-swal-icon',
+            popup: 'my-swal-popup',
+          },
+        });
+      }
+    );
   }
 }

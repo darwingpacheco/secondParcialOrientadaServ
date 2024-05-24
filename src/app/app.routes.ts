@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import ProductoComponent from './pages/producto/producto.component';
 import { AuthGuard } from './services/http/auth.guard';
+import { ErrorComponent } from './pages/error/error.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: LoginComponent,
+    component: ErrorComponent,
   },
 ];
