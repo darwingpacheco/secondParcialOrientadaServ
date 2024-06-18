@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ConsultaService } from '../../services/http/consulta.service';
@@ -109,25 +109,42 @@ export default class ProductoComponent implements OnInit {
     });
   }
 
-  updateProduct(updatedProduct: ProductosInterface) {
-    this.productoS.update(updatedProduct).subscribe(() => {
-      this.loadProducts(); // Recargar la lista de productos después de actualizar uno
-    });
-  }
-
   saveProduct() {
     if (this.selectedProduct) {
       // Clean the image URLs before saving
       this.selectedProduct.images = this.selectedProduct.images.map(this.cleanImageUrl);
-
+  
       if (this.selectedProduct.id_producto) {
         this.productoS.update(this.selectedProduct).subscribe(() => {
           this.loadProducts();
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto actualizado!',
+            text: 'El producto se actualizó correctamente.'
+          });
+          this.closeModal();
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo actualizar el producto. Inténtalo de nuevo.'
+          });
         });
       } else {
         this.productoS.create(this.selectedProduct).subscribe(() => {
           this.loadProducts();
-          this.closeModal(); // Cierra el modal después de crear un nuevo producto
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto creado!',
+            text: 'El producto se creó correctamente.'
+          });
+          this.closeModal();
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo crear el producto. Inténtalo de nuevo.'
+          });
         });
       }
     }
