@@ -6,7 +6,6 @@ import { ProductosInterface } from '../../interfaces/productos-interface';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-producto',
   standalone: true,
@@ -18,12 +17,11 @@ export default class ProductoComponent implements OnInit {
   private readonly productoS = inject(ConsultaService);
   producto: ProductosInterface[] = [];
   selectedProduct: ProductosInterface = {
-    id: 0,
-    title: '',
-    description: '',
-    price: 0,
+    id_producto: 0,
+    nombre: '',
+    detalle: '',
+    valor: 0,
     images: [''],
-    categoryId: 4
   };
 
   constructor(
@@ -37,26 +35,52 @@ export default class ProductoComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productoS.getAll().subscribe((res: ProductosInterface[]) => {
-      this.producto = res.map(product => ({
-        ...product,
-        images: product.images.map(this.cleanImageUrl)
-      }));
-    });
+    this.productoS.getAll().subscribe(
+      (res: any) => {
+        console.log('Response from getAll:', res); // Log the response from the backend
+        if (res.data && Array.isArray(res.data.data)) {
+          this.producto = res.data.data.map((product: ProductosInterface) => ({
+            ...product,
+            images: this.parseImages(product.images) // Asegúrate de que images esté definido y en el formato correcto
+          }));
+        } else {
+          console.error('Unexpected response format:', res); // Log unexpected format
+        }
+      },
+      (error) => {
+        console.error('Error fetching products:', error); // Log any error
+      }
+    );
+  }
+
+  parseImages(images: any): string[] {
+    if (Array.isArray(images)) {
+      return images.map(this.cleanImageUrl);
+    } else if (typeof images === 'string') {
+      return [this.cleanImageUrl(images)];
+    } else {
+      return [];
+    }
   }
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   addProduct() {
-    console.log("se presiono add")
-    this.selectedProduct = { title: '', description: '', price: 0, images: [''], categoryId: 4 };
+    console.log("se presiono add");
+    this.selectedProduct = {  
+      id_producto: 0, 
+      nombre: '', 
+      detalle: '', 
+      valor: 0, 
+      images: [''], 
+    };
   }
 
   editProduct(id: number) {
-    const product = this.producto.find(item => item.id === id);
+    const product = this.producto.find(item => item.id_producto === id);
     if (product) {
       this.selectedProduct = { ...product, images: [...product.images] };
     }
@@ -93,7 +117,7 @@ export default class ProductoComponent implements OnInit {
       // Clean the image URLs before saving
       this.selectedProduct.images = this.selectedProduct.images.map(this.cleanImageUrl);
 
-      if (this.selectedProduct.id) {
+      if (this.selectedProduct.id_producto) {
         this.productoS.update(this.selectedProduct).subscribe(() => {
           this.loadProducts();
         });
