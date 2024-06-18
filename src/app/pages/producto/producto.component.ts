@@ -74,7 +74,7 @@ export default class ProductoComponent implements OnInit {
       id_producto: 0, 
       nombre: '', 
       detalle: '', 
-      valor: 0, 
+      valor: 0,
       images: [''], 
     };
   }
@@ -89,7 +89,10 @@ export default class ProductoComponent implements OnInit {
   deleteProduct(id: number) {
     this.productoS.delete(id).subscribe(() => {
       this.loadProducts();
-  
+
+      // Eliminar el producto del array local
+      this.producto = this.producto.filter(item => item.id_producto !== id);
+      
       // Mostrar mensaje de éxito con SweetAlert2
       Swal.fire({
         icon: 'success',
@@ -131,13 +134,11 @@ export default class ProductoComponent implements OnInit {
   }
 
   cleanImageUrl(url: string): string {
-    return url.replace(/^\[?"|"?\]$/g, '');
-  }
-
-  removeImage(index: number) {
-    if (this.selectedProduct) {
-      this.selectedProduct.images.splice(index, 1);
+    url = url.replace(/^\[?"|"?\]$/g, '');
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
     }
+    return url;
   }
 
   closeModal() {
