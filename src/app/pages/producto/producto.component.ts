@@ -122,6 +122,7 @@ export default class ProductoComponent implements OnInit {
             title: '¡Producto actualizado!',
             text: 'El producto se actualizó correctamente.'
           });
+          this.resetSelectedProduct();
           this.closeModal();
         }, error => {
           Swal.fire({
@@ -138,6 +139,7 @@ export default class ProductoComponent implements OnInit {
             title: '¡Producto creado!',
             text: 'El producto se creó correctamente.'
           });
+          this.resetSelectedProduct();
           this.closeModal();
         }, error => {
           Swal.fire({
@@ -148,6 +150,16 @@ export default class ProductoComponent implements OnInit {
         });
       }
     }
+  }
+
+  resetSelectedProduct() {
+    this.selectedProduct = {
+      id_producto: 0,
+      nombre: '',
+      detalle: '',
+      valor: 0,
+      images: [''],
+    };
   }
 
   cleanImageUrl(url: string): string {
